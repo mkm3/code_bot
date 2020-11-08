@@ -42,15 +42,16 @@ def choose_problem():
 
     #TODO: implement datetime (i.e. "11.07.21")
     print('Weekly Wednesday Problems')
-    print(f'Problem 1: {str(res[0])}')
-    print(f'Problem 2: {str(res[1])}')
-    print(f'Problem 3: {str(res[2])}')
+    print(f'Problem 1: {res[0]}')
+    print(f'Problem 2: {res[1]}')
+    print(f'Problem 3: {res[2]}')
 
 choose_problem()
 
 def remove_prob():
-    
+
     weekly_problems = choose_problem()
+    pass
 
 def add_prob_to_used():
     pass
