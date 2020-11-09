@@ -16,10 +16,13 @@ Functions - https://www.tutorialspoint.com/python3/python_dictionary.htm
 
 """
 
+from os import write
 import random
 import csv
 
+
 def make_dict():
+    """Creates a dictionary using the HB Repo of Coding Challenges"""
 
     problems = {}
 
@@ -32,7 +35,10 @@ def make_dict():
 
     return problems
 
-def choose_problem():
+
+
+def choose_problems():
+    """Function to choose three random coding challenges"""
 
     problems = make_dict()
 
@@ -44,23 +50,76 @@ def choose_problem():
     res1 = res[1]
     res2 = res[2]
 
-    print(res0, res1, res2)
     return res0, res1, res2
 
-def display_problems():
 
-    res = choose_problem()
+
+def display_problems():
+    """Prints weekly Wed coding challenges"""
+
+    res = choose_problems()
+
+    cc_name1 = res[0][0]
+    url_link1 = res[0][1]
+    cc_name2 = res[1][0]
+    url_link2 = res[1][1]
+    cc_name3 = res[2][0]
+    url_link3 = res[2][1]
 
     #TODO: implement datetime (i.e. "11.07.21")
     print('Weekly Wednesday Problems')
-    print(f'Problem 1: {res[0]}')
-    print(f'Problem 2: {res[1]}')
-    print(f'Problem 3: {res[2]}')
+    print(f'Problem 1: {cc_name1} - {url_link1}')
+    print(f'Problem 2: {cc_name2} - {url_link2}')
+    print(f'Problem 3: {cc_name3} - {url_link3}')
 
-display_problems()
+    return cc_name1, url_link1, cc_name2, url_link2, cc_name3, url_link3
+
+
 
 def remove_prob():
-    pass
+    """Remove problems from problems.csv - to avoid repeat"""
+
+    #var for tuple
+    weekly_probs = display_problems()
+
+    cc_name1 = weekly_probs[0]
+    url_link1 = weekly_probs[1]
+    cc_name2 = weekly_probs[2]
+    url_link2 = weekly_probs[3]
+    cc_name3 = weekly_probs[4]
+    url_link3 = weekly_probs[5]
+
+    names_to_remove = [cc_name1, cc_name2, cc_name3]
+    urls_to_remove = [url_link1, url_link2, url_link3]
+
+    for name in names_to_remove:
+        pass
+
+    for url in urls_to_remove:
+        pass
+
+    return names_to_remove, urls_to_remove
+
+
 
 def add_prob_to_used():
-    pass
+    """Add weekly problems to used_problems.csv - to avoid repeat"""
+
+    problems_to_add = remove_prob()
+
+    #for testing
+    print('add_prob_to_used() - Problems to Add')
+    names = problems_to_add[0]
+    urls = problems_to_add[1]
+
+
+    with open('used_problems.csv', 'w', newline='') as csvfile:
+        fieldnames = ['cc_name', 'url_link']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+
+        writer.writeheader()
+        writer.writerow({'cc_name': names[0], 'url_link': urls[0]})
+        writer.writerow({'cc_name': names[1], 'url_link': urls[1]})
+        writer.writerow({'cc_name': names[2], 'url_link': urls[2]})
+
+add_prob_to_used()
