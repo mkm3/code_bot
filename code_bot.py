@@ -110,17 +110,17 @@ def add_prob_to_used():
     names = problems_to_add[0]
     urls = problems_to_add[1]
 
+    with open('used_problems.csv', 'a', newline='') as csvfile:
+        fieldnames = ['cc_name', 'url_link']
+        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
+        writer.writerow({'cc_name': names[0], 'url_link': urls[0]})
+        writer.writerow({'cc_name': names[1], 'url_link': urls[1]})
+        writer.writerow({'cc_name': names[2], 'url_link': urls[2]})
+        writer.writerow({})
+
     #for testing
     # print('add_prob_to_used() - Problems to Add')
     # print(names)
     # print(urls)
-
-    with open('used_problems.csv', 'a', newline='') as csvfile:
-        fieldnames = ['cc_name', 'url_link']
-        writer = csv.DictWriter(csvfile, fieldnames=fieldnames)
-
-        writer.writerow({'cc_name': names[0], 'url_link': urls[0]})
-        writer.writerow({'cc_name': names[1], 'url_link': urls[1]})
-        writer.writerow({'cc_name': names[2], 'url_link': urls[2]})
 
 add_prob_to_used()
